@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+        {% block title %}
+        {% endblock title %}
+        </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <header>
+            <nav class="navigation-bar">
+                <ul class="logo">
+                    <li> <img src="{% static 'images/logo.png' %}"> </li>
+                    <li> MY COLLEGE</li>
+                </ul>
+                <ul class="links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'courses' %}">Courses</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'admissions' %}">Admission</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' user.id %}">Profile</a> </li>
+                    {% else %}
+                    <li><a href="{% url 'profile2' %}">Profile</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="login-status">
+            {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! You are logged in.</p>
+            <p> <a href= "{% url 'logout' %}">click to logout</a> </p>
+          {% else %}
+            <p>You are not logged in.</p>
+          {% endif %}
+            </div>
+
+        </header>
+        <div class="setting-background">.
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>

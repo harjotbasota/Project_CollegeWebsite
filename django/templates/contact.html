@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Contact Page 
+{% endblock title %}
+
+
+{% block content %}
+<div class="contact-grid">
+    <div> 
+        <img src="{% static 'images/gmail.webp' %}"> 
+        <p> mycollege@gmail.com </p>
+    </div>
+    <div> 
+        <img src="{% static 'images/insta.webp' %}"> 
+        <p> www.instagram.com/mycollege </p>
+    </div>
+    <div> 
+        <img src="{% static 'images/telephone.webp' %}"> 
+        <p> +1(111)111-1111 </p>
+    </div>
+    <div> 
+        <img src="{% static 'images/linkedin.png' %}"> 
+        <p> linkedin.com/mycollege </p>
+    </div>
+
+</div>
+
+
+
+{% endblock content %}

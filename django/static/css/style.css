@@ -1,0 +1,144 @@
+
+header {
+    background-color: #6499FF;
+    height: 70px;
+}
+
+header nav img{
+    height: 70px;
+    width: 130px;
+}
+.navigation-bar ul{
+    display: inline;
+}
+
+.logo li{
+    display: inline;
+    font-size: 40px;
+    vertical-align: middle;
+    font-family: "Pacifico", cursive;
+    color:whitesmoke;
+}
+
+.links{
+    float: right;
+    margin: 30px;
+}
+
+.links li{
+    display: inline;
+    margin: 12.5px;
+    font-size: 23px;
+}
+
+.links li a{
+    color: white;
+    text-decoration: none;
+}
+.links li a:hover{
+    text-decoration: underline;
+}
+
+.setting-background {
+    background: url(../images/background3.jpg) no-repeat center center fixed;
+    opacity: 1;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+}
+.homepagetext{
+    color: black;
+
+}
+
+.mainheading{
+    font-size:50px;
+}
+
+.secondaryheading{
+    font-size: 39px;
+}
+.listsettings li{
+    font-size: 27px;
+}
+
+.paragraph-setting{
+    font-size: 28px;
+    margin-top: 3px;
+}
+.contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 3fr;  
+    grid-row-gap: 22px;
+}
+.contact-grid > div{
+    border: 0px solid red;
+
+}
+.contact-grid div{
+    height: 200px;
+    width: 200px;
+    font-size: 28px;
+}
+.contact-grid div img{
+    height: 125px;
+}
+.courses-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+    margin-right: 400px;
+}
+.courses-grid > div{
+    border: 3px solid red;
+    background-color: #98FB98;
+}
+
+.my-form{
+    align-items: center;
+    margin-left: 300px;
+    font-size: 40px;
+}
+.my-form input{
+    width: 200px;
+    height: 40px;
+    font-size: 30px;
+}
+.my-form input[type="submit"]{
+    background-color:#6499FF;
+    width: 150px;
+}
+.my-form input[type="submit"]:hover{
+    background-color: #98FB98;
+    width: 160px;
+}
+.ad-form{
+    align-items: center;
+    margin-left: 200px;
+    font-size: 23px;
+}
+.ad-form input[type="submit"]{
+    background-color:#6499FF;
+    width: 150px;
+    height: 30px;
+}
+.ad-form input[type="submit"]:hover{
+    background-color: #98FB98;
+    width: 160px;
+}
+
+.login-status{
+    margin-left: 1200px;
+    font-size: 30px;
+    color:red;
+}
+.logout{
+
+}
+.table {
+    width: 600px;
+    font-size: 30px;
+    border-color: #98FB98;
+    border-width: 2px;
+}

@@ -1,0 +1,66 @@
+---
+- name: Building a server to create golden AMI for project
+  become: true
+  hosts: all
+  tasks:
+    - name: Updating Cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+    - name: Copy django app to server
+      copy:
+        src: /home/ubuntu/Project_CollegeWebsite/django
+        dest: /home/ubuntu/Project_CollegeWebsite
+    - name: Creating an aws directory to store credentials
+      file:
+        path: ~/.aws
+        state: directory
+    - name: Adding credentials to server for aws access
+      copy:
+        src: /home/ubuntu/Project_CollegeWebsite/Infrastructure/ansible/secrets/credentials
+        dest: ~/.aws/credentials
+    - name: Installing all the required packages
+      apt:
+        name: ['python3-django','gunicorn','nginx','python3-boto3','python3-psycopg2']
+        state: present
+    - name: Migrating the database
+      command:
+        chdir: /home/ubuntu/Project_CollegeWebsite/django
+        cmd: python3 manage.py makemigrations
+    - name: Migrating the database
+      command:
+        chdir: /home/ubuntu/Project_CollegeWebsite/django
+        cmd: python3 manage.py migrate
+    - name: Creating the gunicorn service file
+      copy:
+        src: /home/ubuntu/Project_CollegeWebsite/ConfigFiles/gunicorn.service
+        dest: /etc/systemd/system/gunicorn.service
+    - name: Creating directory for gunicorn sock file
+      file:
+        path: /var/log/gunicorn
+        state: directory
+    - name: Creating nginx sock file
+      copy:
+        src: /home/ubuntu/Project_CollegeWebsite/ConfigFiles/nginx.conf
+        dest: /etc/nginx/sites-available/default
+    - name: Collecting static files
+      command:
+        chdir: /home/ubuntu/Project_CollegeWebsite/django
+        cmd: python3 manage.py collectstatic
+    - name: Starting gunicorn 
+      systemd:
+        name: gunicorn
+        enabled: true
+        state: started
+    - name: Starting nginx
+      systemd:
+        name: nginx
+        state: started
+    - name: Restarting gunicorn so that it loads the latest configurations
+      systemd:
+        name: gunicorn
+        state: restarted
+    - name: Restarting nginx so that it loads latest configurations
+      systemd:
+        name: nginx
+        state: restarted

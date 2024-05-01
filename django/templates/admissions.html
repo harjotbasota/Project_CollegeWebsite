@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admission Form
+{% endblock title %}
+
+
+{% block content %}
+<p class="mainheading"> Fill Up details of Admission Form </p>
+<div class="ad-form">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="save">
+</form>
+</div>
+{% endblock content %}
